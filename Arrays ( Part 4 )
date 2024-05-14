@@ -1,0 +1,107 @@
+# Question 1. Two Sum Problem
+Leetcode Question no. 1 - Two Sum
+https://leetcode.com/problems/two-sum/
+
+// brute force approach
+
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        int arr[]=new int[2];
+        for(int i=0;i<nums.length-1;i++){
+            for(int j=i+1;j<nums.length;j++){
+                if(nums[i]+nums[j]==target){
+                     arr[0]= i;
+                     arr[1]=j;
+                }
+            }
+        }
+        return arr;
+    }
+}
+
+Note :- Time Complexity = O(n^2) and Space Complexity = O(1)
+
+// optimal Approach
+
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        int ans[] = new int[2];
+        HashMap<Integer,Integer> hm = new HashMap<>();
+        for(int i=0; i<nums.length; i++){
+            int diff = target - nums[i];
+            if(hm.containsKey(diff)){
+                ans[0] = hm.get(diff);
+                ans[1] = i;
+                break;
+            }
+            else{
+                hm.put(nums[i], i);
+            }
+        }
+        return ans;
+    }
+}
+
+Note :- Time Complexity = O(n) and Space Complexity = O(n)
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+# Question 2. 4-Sum Problem
+Leetcode Question no. 18 - 4Sum
+https://leetcode.com/problems/4sum/
+
+// Optimal Approach
+
+class Solution {
+    public List<List<Integer>> fourSum(int[] nums, int target) {
+       int n = nums.length; 
+        List<List<Integer>> ans = new ArrayList<>();
+        Arrays.sort(nums);
+
+        for (int i = 0; i < n; i++) {
+            // avoid the duplicates while moving i:
+            if (i > 0 && nums[i] == nums[i - 1]) continue;
+            for (int j = i + 1; j < n; j++) {
+                // avoid the duplicates while moving j:
+                if (j > i + 1 && nums[j] == nums[j - 1]) continue;
+
+                // 2 pointers:
+                int k = j + 1;
+                int l = n - 1;
+                while (k < l) {
+                    long sum = nums[i];
+                    sum += nums[j];
+                    sum += nums[k];
+                    sum += nums[l];
+                    if (sum == target) {
+                        List<Integer> temp = new ArrayList<>();
+                        temp.add(nums[i]);
+                        temp.add(nums[j]);
+                        temp.add(nums[k]);
+                        temp.add(nums[l]);
+                        ans.add(temp);
+                        k++;
+                        l--;
+
+                        // skip the duplicates:
+                        while (k < l && nums[k] == nums[k - 1]) k++;
+                        while (k < l && nums[l] == nums[l + 1]) l--;
+                    } else if (sum < target) k++;
+                    else l--;
+                }
+            }
+        }
+        return ans;
+    }
+}
+
+Note :- Time Complexity = O(n) and Space Complexity = O(1)
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+# Question 3. 
+Leetcode Question no. 
+
+
