@@ -1,0 +1,20 @@
+Question 1.
+Leetcode question no. 206 - Reverse Linked List
+https://leetcode.com/problems/reverse-linked-list/
+
+class Solution {
+    public ListNode reverseList(ListNode head) {
+        ListNode prev = null;
+        ListNode curr = head;
+        ListNode nextNode = null;
+        while(curr!= null){
+            nextNode = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = nextNode;
+        }
+        return prev;
+    }
+}
+
+Note:- Time Complexity = O(n) and Space Complexity = O(1)
